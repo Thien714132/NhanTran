@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chào ngày mới em bé yêu 💖</title>
+
+    <!-- Favicon chuẩn 16x16 -->
+    <link rel="icon" type="image/png" href="nhantran.jpg" />
+
+    <!-- Apple Touch Icon cho iOS -->
+    <link rel="apple-touch-icon" href="nhantran.jpg" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- <div style="position: absolute; top: 0; left: 0; right: 0">
+      <div class="js-container container" style="top: 0px !important"></div>
+    </div> -->
+    <div
+      style="
+        width: 100vw;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      "
+    >
+      <div id="card">
+        <div class="heart"></div>
+        <div class="heart1"></div>
+        <div class="heart2"></div>
+        <div class="heart3"></div>
+        <div class="heart4"></div>
+      </div>
+
+      <script>
+        const div = document.getElementById("card");
+        div.addEventListener("click", () => {
+          window.location.href = "greeting.html"; // mở trang mới cùng tab
+        });
+      </script>
+    </div>
+  </body>
+</html>

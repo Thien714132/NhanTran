@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="greeting.css" />
+</head>
+
+<body>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <p
+            style="position: absolute; top: 20%; color: #fff; text-align: center; padding-right: 20px; padding-left: 20px; font-size: 20px;">
+            Em bé phải trả lời câu hỏi này mới được xem tiếp</p>
+        <div class="popup-content">
+            <p style=>Em bé có yêu anh không?!</p>
+
+            <button id="yesBtn">Có</button>
+        </div>
+        <button id="noBtn">Không</button>
+    </div>
+    <div id="greetingText" style="
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 50vh;
+        width: 80%;
+        font-family: Baloo 2;
+        font-weight: 600;
+        overflow: hidden;
+        color: #fff;
+        margin-top: -20px;
+        display: none;
+      ">
+        <div style="overflow: auto">
+            Chào em bé yêu của anh ạ Chào 2 mẹ con xinh đẹp ❤️❤️❤️ Em bé ơi nay anh
+            chưa chào em mà đã thấy em bé chào anh rồi. Không phải anh quên đâu. Anh
+            lúc nào cũng nhớ mình cần chào buổi sáng em bé. Nhưng mà nay anh xin
+            phép em bé yêu của anh, anh không nói xin lỗi. Tại vì anh nghĩ nếu anh
+            nói từ đó nhiều quá sẽ không hay. Chỉ mong em bé biết rằng điều gì làm
+            em bé vui, hạnh phúc anh sẽ cố gắng làm bằng được. Hôm nay em bé chào
+            anh trước còn chào siêu hay 🥰🥰🥰. Anh thấy mình may mắn không ai bằng.
+            Em bé không có như em bé nghĩ đâu. Em bé làm được mọi thứ. Anh nhìn thấy
+            đúng nhiều điều về em bé mà hị hị. Nên anh sẽ nói lại câu này. Sau nhiều
+            năm, sau bao nhiều biến cố, sau bao nhiều mất mát… Em bé tự điền vế sau
+            giúp anh Thiện nha 🥰🥰🥰 Anh cũng là một người hiếu thắng và có rất
+            nhiều điểm giống em bé. Nhưng từ khi quen em bé, anh không còn muốn
+            thắng em bé trong bất kì cuộc tranh luận nào. Nhiều lúc anh khờ nên hay
+            nói xin lỗi em. Anh nhận lỗi hết về mình nhưng anh hay nói xin lỗi quá
+            em bé nhỉ hehe, từ nay anh bớt nha. Anh sẽ hoàn thiện bản thân hơn nữa
+            để được làm mọi thứ cùng em. Mọi ngày em sẽ đọc lời chào khi tỉnh dậy,
+            nay em sẽ đọc trước lúc lái xe. Mong lời chào này của anh sẽ cho em bé
+            biết, em bé quan trọng với anh nhường nào. Mong em cũng sẽ thêm yên tâm
+            về anh. Và cùng với mọi điều trên sẽ làm em bé có một ngày làm việc tốt,
+            vui vẻ và lạc quan em bé yêu nha. Nói với anh Diệu là anh của em nói anh
+            đừng hỏi rờ rờ làm em bé của anh ngại 🤣🤣🤣. Hay là em bé của anh cũng
+            thích nghe trêu rứa taaa 🫣. Em bé lái xe an toàn nhaaa. Hôm nay câu kết
+            của anh đơn giản nhưng to lớn lắm ANH YÊU EM ❤️❤️❤️
+        </div>
+
+        <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: -1;
+          display: none;
+        " id="confettiView">
+            <div class="js-container container" style="top: 0px !important"></div>
+        </div>
+
+
+
+        <audio id="bgMusic" src="music.mp3" loop></audio>
+
+        <script>
+            const overlay = document.getElementById("popupOverlay");
+            const yesBtn = document.getElementById("yesBtn");
+            const noBtn = document.getElementById("noBtn");
+            const music = document.getElementById("bgMusic");
+            const confettiView = document.getElementById("confettiView");
+            const greetingText = document.getElementById("greetingText");
+            // Hàm random vị trí nút "Không" trên toàn màn hình
+            function moveNoButtonRandom() {
+                const maxX = window.innerWidth - noBtn.offsetWidth;
+                const maxY = window.innerHeight - noBtn.offsetHeight;
+
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+
+                noBtn.style.left = randomX + "px";
+                noBtn.style.top = randomY + "px";
+            }
+
+            // Hover hoặc click → nút nhảy
+            noBtn.addEventListener("mouseenter", moveNoButtonRandom);
+            noBtn.addEventListener("click", moveNoButtonRandom);
+
+            // Click "Có" → bật nhạc + đóng popup
+            yesBtn.addEventListener("click", () => {
+                music.play().catch(() => console.log("Cần click user"));
+                overlay.style.display = "none";
+                if (confettiView) {
+                    confettiView.style.display = "flex";
+                }
+                if (greetingText) {
+                    greetingText.style.display = "flex";
+                }
+            });
+        </script>
+
+        <script src="confetti.js"></script>
+    </div>
+</body>
+
+</html>
