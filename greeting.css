@@ -48,6 +48,9 @@ body {
   /* max-width: 400px; */
   background-color: #f03f6f;
   overflow: hidden;
+  @media (min-width: 769px) {
+    background-size: contain;
+  }
 }
 
 /* confetti */
