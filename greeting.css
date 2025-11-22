@@ -3,7 +3,33 @@
 p {
   font-family: "Baloo 2", cursive;
   font-weight: 600;
-  overflow: hidden;
+  /* overflow: hidden; */
+  line-height: 24px;
+  size: 16px;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+#greetingText {
+  font-family: "Baloo 2", cursive;
+  font-weight: 600;
+  color: #fff;
+  width: 80%;
+  max-height: 60vh; /* giới hạn chiều cao, có thể scroll */
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3); /* optional: nền mờ cho dễ đọc */
+  border-radius: 12px;
+  overflow-y: auto; /* scroll theo chiều dọc nếu nội dung dài */
+  line-height: 1.6; /* khoảng cách dòng */
+  font-size: 18px; /* cỡ chữ dễ đọc */
+  text-align: justify; /* căn đều 2 bên */
+}
+
+/* Khoảng cách giữa các đoạn <p> */
+#greetingText p {
+  margin-bottom: 1em; /* khoảng cách giữa các đoạn */
 }
 
 body {
@@ -112,7 +138,7 @@ body {
 /* Khung content màu trắng nhỏ */
 .popup-content {
   background: white;
-  padding: 20px 30px;
+  padding: 30px 30px;
   border-radius: 12px;
   text-align: center;
   max-width: 300px;
@@ -122,7 +148,6 @@ body {
 
 /* Nút */
 #yesBtn {
-  margin-top: -3px;
   padding: 12px 24px;
   font-size: 18px;
   border-radius: 8px;

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin View</title>
+  </head>
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <h3>Chào em bé đáng yêu của bạn đi</h3>
+    <link
+      href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+      rel="stylesheet"
+    />
+    <div id="editor" style="height: 60vh"></div>
+    <button
+      id="saveBtn"
+      style="margin-top: 10px; padding: 10px; font-size: 16px"
+    >
+      Lưu
+    </button>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+      // Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyDiDQlAk3c3VHKERffbYuEfRncERcR5x0o",
+        authDomain: "greetingweb-2e377.firebaseapp.com",
+        projectId: "greetingweb-2e377",
+        storageBucket: "greetingweb-2e377.firebasestorage.app",
+        messagingSenderId: "7667202584",
+        appId: "1:7667202584:web:c2c7438d828eff552f216d",
+        measurementId: "G-4ZZ63VEZ3B",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      const quill = new Quill("#editor", { theme: "snow" });
+      const saveBtn = document.getElementById("saveBtn");
+
+      const docRef = db.collection("messages").doc("greeting");
+
+      // Load nội dung từ Firestore nếu có
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          quill.root.innerHTML = doc.data().text;
+        } else {
+          quill.root.innerHTML = "";
+        }
+      });
+
+      // Lưu nội dung vào Firestore
+      saveBtn.addEventListener("click", () => {
+        const content = quill.root.innerHTML;
+        docRef
+          .set({ text: content }, { merge: true })
+          .then(() => alert("Đã lưu vào Firestore!"))
+          .catch((err) => console.error(err));
+      });
+    </script>
+  </body>
+</html>

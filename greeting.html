@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:title" content="Chào ngày mới em bé yêu 💖" />
@@ -22,114 +21,138 @@
     <!-- Apple Touch Icon cho iOS -->
     <link rel="apple-touch-icon" href="nhantran.jpg" />
     <link rel="stylesheet" href="greeting.css" />
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="popup-overlay" id="popupOverlay">
-        <p
-            style="position: absolute; top: 20%; color: #fff; text-align: center; padding-right: 20px; padding-left: 20px; font-size: 20px;">
-            Em bé phải trả lời câu hỏi này mới được xem tiếp</p>
-        <div class="popup-content">
-            <p style=>Em bé có yêu anh không?!</p>
+      <p
+        style="
+          position: absolute;
+          top: 25%;
+          color: #fff;
+          text-align: center;
+          padding-right: 20px;
+          padding-left: 20px;
+          font-size: 20px;
+        "
+      >
+        Em bé phải trả lời câu hỏi này mới được xem tiếp
+      </p>
+      <div class="popup-content">
+        <p style="color: #000; margin-bottom: 30px">Em bé có yêu anh không?!</p>
 
-            <button id="yesBtn">Có</button>
-        </div>
-        <button id="noBtn">Không</button>
+        <button id="yesBtn">Có</button>
+      </div>
+      <button id="noBtn">Không</button>
     </div>
-    <div id="greetingText" style="
+
+    <div
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        display: none;
+      "
+      id="confettiView"
+    >
+      <div class="js-container container" style="top: 0px !important"></div>
+    </div>
+
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+    <div
+      id="greetingText"
+      style="
         width: 100vw;
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 50vh;
+        height: 70vh;
         width: 80%;
         font-family: Baloo 2;
         font-weight: 600;
-        overflow: hidden;
         color: #fff;
-        margin-top: -20px;
         display: none;
-      ">
-        <div style="overflow: auto">
-            Chào em bé yêu của anh ạ Chào 2 mẹ con xinh đẹp ❤️❤️❤️ Em bé ơi nay anh
-            chưa chào em mà đã thấy em bé chào anh rồi. Không phải anh quên đâu. Anh
-            lúc nào cũng nhớ mình cần chào buổi sáng em bé. Nhưng mà nay anh xin
-            phép em bé yêu của anh, anh không nói xin lỗi. Tại vì anh nghĩ nếu anh
-            nói từ đó nhiều quá sẽ không hay. Chỉ mong em bé biết rằng điều gì làm
-            em bé vui, hạnh phúc anh sẽ cố gắng làm bằng được. Hôm nay em bé chào
-            anh trước còn chào siêu hay 🥰🥰🥰. Anh thấy mình may mắn không ai bằng.
-            Em bé không có như em bé nghĩ đâu. Em bé làm được mọi thứ. Anh nhìn thấy
-            đúng nhiều điều về em bé mà hị hị. Nên anh sẽ nói lại câu này. Sau nhiều
-            năm, sau bao nhiều biến cố, sau bao nhiều mất mát… Em bé tự điền vế sau
-            giúp anh Thiện nha 🥰🥰🥰 Anh cũng là một người hiếu thắng và có rất
-            nhiều điểm giống em bé. Nhưng từ khi quen em bé, anh không còn muốn
-            thắng em bé trong bất kì cuộc tranh luận nào. Nhiều lúc anh khờ nên hay
-            nói xin lỗi em. Anh nhận lỗi hết về mình nhưng anh hay nói xin lỗi quá
-            em bé nhỉ hehe, từ nay anh bớt nha. Anh sẽ hoàn thiện bản thân hơn nữa
-            để được làm mọi thứ cùng em. Mọi ngày em sẽ đọc lời chào khi tỉnh dậy,
-            nay em sẽ đọc trước lúc lái xe. Mong lời chào này của anh sẽ cho em bé
-            biết, em bé quan trọng với anh nhường nào. Mong em cũng sẽ thêm yên tâm
-            về anh. Và cùng với mọi điều trên sẽ làm em bé có một ngày làm việc tốt,
-            vui vẻ và lạc quan em bé yêu nha. Nói với anh Diệu là anh của em nói anh
-            đừng hỏi rờ rờ làm em bé của anh ngại 🤣🤣🤣. Hay là em bé của anh cũng
-            thích nghe trêu rứa taaa 🫣. Em bé lái xe an toàn nhaaa. Hôm nay câu kết
-            của anh đơn giản nhưng to lớn lắm ANH YÊU EM ❤️❤️❤️
-        </div>
+      "
+      class="greetingText"
+    ></div>
+    <!-- Firebase App (bắt buộc) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 
-        <div style="
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: -1;
-          display: none;
-        " id="confettiView">
-            <div class="js-container container" style="top: 0px !important"></div>
-        </div>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
+    <script>
+      // Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyDiDQlAk3c3VHKERffbYuEfRncERcR5x0o",
+        authDomain: "greetingweb-2e377.firebaseapp.com",
+        projectId: "greetingweb-2e377",
+        storageBucket: "greetingweb-2e377.firebasestorage.app",
+        messagingSenderId: "7667202584",
+        appId: "1:7667202584:web:c2c7438d828eff552f216d",
+        measurementId: "G-4ZZ63VEZ3B",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
 
+      const greetingTextDiv = document.getElementById("greetingText");
+      const docRef = db.collection("messages").doc("greeting");
 
-        <audio id="bgMusic" src="music.mp3" loop></audio>
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            console.log(doc.data().text);
+            greetingTextDiv.innerHTML = doc.data().text;
+          } else {
+            greetingTextDiv.innerHTML = "Chưa có nội dung chào nào.";
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          greetingTextDiv.innerHTML = "Lỗi khi load nội dung.";
+        });
+    </script>
 
-        <script>
-            const overlay = document.getElementById("popupOverlay");
-            const yesBtn = document.getElementById("yesBtn");
-            const noBtn = document.getElementById("noBtn");
-            const music = document.getElementById("bgMusic");
-            const confettiView = document.getElementById("confettiView");
-            const greetingText = document.getElementById("greetingText");
-            // Hàm random vị trí nút "Không" trên toàn màn hình
-            function moveNoButtonRandom() {
-                const maxX = window.innerWidth - noBtn.offsetWidth;
-                const maxY = window.innerHeight - noBtn.offsetHeight;
+    <script>
+      const overlay = document.getElementById("popupOverlay");
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const music = document.getElementById("bgMusic");
+      const confettiView = document.getElementById("confettiView");
+      const greetingText = document.getElementById("greetingText");
+      // Hàm random vị trí nút "Không" trên toàn màn hình
+      function moveNoButtonRandom() {
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
 
-                const randomX = Math.floor(Math.random() * maxX);
-                const randomY = Math.floor(Math.random() * maxY);
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
 
-                noBtn.style.left = randomX + "px";
-                noBtn.style.top = randomY + "px";
-            }
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+      }
 
-            // Hover hoặc click → nút nhảy
-            noBtn.addEventListener("mouseenter", moveNoButtonRandom);
-            noBtn.addEventListener("click", moveNoButtonRandom);
+      // Hover hoặc click → nút nhảy
+      noBtn.addEventListener("mouseenter", moveNoButtonRandom);
+      noBtn.addEventListener("click", moveNoButtonRandom);
 
-            // Click "Có" → bật nhạc + đóng popup
-            yesBtn.addEventListener("click", () => {
-                music.play().catch(() => console.log("Cần click user"));
-                overlay.style.display = "none";
-                if (confettiView) {
-                    confettiView.style.display = "flex";
-                }
-                if (greetingText) {
-                    greetingText.style.display = "flex";
-                }
-            });
-        </script>
+      // Click "Có" → bật nhạc + đóng popup
+      yesBtn.addEventListener("click", () => {
+        music.play().catch(() => console.log("Cần click user"));
+        overlay.style.display = "none";
+        if (confettiView) {
+          confettiView.style.display = "flex";
+        }
+        if (greetingText) {
+          greetingText.style.display = "flex";
+        }
+      });
+    </script>
 
-        <script src="confetti.js"></script>
-    </div>
-</body>
-
+    <script src="confetti.js"></script>
+  </body>
 </html>
