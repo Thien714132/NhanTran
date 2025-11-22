@@ -39,7 +39,17 @@
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
-      const quill = new Quill("#editor", { theme: "snow" });
+      const quill = new Quill("#editor", {
+        theme: "snow",
+        modules: {
+          toolbar: [
+            [{ header: [1, 2, 3, 4, false] }], // Normal + H1 + H2 + H3 + H4
+            ["bold", "italic", "underline"], // Kiểu chữ
+            [{ list: "ordered" }, { list: "bullet" }], // Danh sách
+            ["link", "image"], // Link + Ảnh
+          ],
+        },
+      });
       const saveBtn = document.getElementById("saveBtn");
 
       const docRef = db.collection("messages").doc("greeting");
